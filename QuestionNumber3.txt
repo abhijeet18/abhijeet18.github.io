@@ -1,0 +1,61 @@
+DATABBASE USED: MySQL
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+creating table: Department
+
+create table Department(DeptNumber INT PRIMARY KEY, DeptName VARCHAR(40) NOT NULL, DeptLocation VARCHAR(40) NOT NULL);
+-------------------------------------------------------------------------------------------------------------------------
+
+creating table: Employee
+
+create table Employee(EmpNo INT PRIMARY KEY, EmpName VARCHAR(40) NOT NULL, EmpJob VARCHAR(40) NOT NULL, EmpMGR VARCHAR(40) NOT NULL, HireDate DATE NOT NULL, EmpSalary INT NOT NULL, DeptNumber INT NOT NULL, FOREIGN KEY (DeptNumber) REFERENCES Department(DeptNumber));
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Inserting values:Department
+
+insert into Department values(01,'HR','First Floor, Main Building');
+insert into Department values(02,'Sales','Second Floor, Main Building');
+insert into Department values(03,'Marketing','Third Floor, Main Building');
+insert into Department values(04,'Purchase','Fourth Floor, Main Building');
+insert into Department values(05,'Account','Fifth Floor, Main Building');
+------------------------------------------------------------------------------------------
+
+Inserting values:Employee
+
+mysql> insert into Employee values(101,'Amit Rao','HR Manager','Prashant Dubey','2017-03-07',87000,1);
+mysql> insert into Employee values(102,'Akshay Rao','HR Manager','Prashant Dubey','2017-03-07',87000,1);
+mysql> insert into Employee values(103,'Anant Rao','HR Manager','Prashant Dubey','2017-03-07',87000,1);
+mysql> insert into Employee values(104,'Anil','Sales Manager','Prashant Dubey','2017-03-07',87000,2);
+mysql> insert into Employee values(105,'Sunil','Sales Manager','Prashant Dubey','2017-03-07',87000,2);
+mysql> insert into Employee values(106,'Abhay Pathak','Sales Manager','Prashant Dubey','2017-03-07',87000,2);
+mysql> insert into Employee values(107,'Ram Prakash','Marketing Manager','Prashant Dubey','2017-03-07',87000,3);
+mysql> insert into Employee values(108,'Om Prakash','Marketing Manager','Prashant Dubey','2017-03-07',87000,3);
+mysql> insert into Employee values(109,'Pravin Rao','Marketing Manager','Prashant Dubey','2017-03-07',87000,3);
+mysql> insert into Employee values(110,'Lakhan Rao','Purchase Manager','Prashant Dubey','2017-03-07',87000,4);
+mysql> insert into Employee values(111,'Nitin Rao','Purchase Manager','Prashant Dubey','2017-03-07',87000,4);
+mysql> insert into Employee values(112,'Aloknath','Purchase Manager','Prashant Dubey','2017-03-07',87000,4);
+mysql> insert into Employee values(113,'Sourabh Patil','Account Manager','Prashant Dubey','2017-03-07',87000,5);
+mysql> insert into Employee values(114,'Sacin Pathak','Account Manager','Prashant Dubey','2017-03-07',87000,5);
+mysql> insert into Employee values(115,'Akshara Rao','Account Manager','Prashant Dubey','2017-03-07',87000,5);
+mysql> insert into Employee values(116,'Soniya Mehta','Account Manager','Prashant Dubey','2017-03-07',87000,5);
+mysql> insert into Employee values(117,'Priyanka Malhotra','Account Manager','Prashant Dubey','2017-03-07',87000,5);
+----------------------------------------------------------------------------------------------------------------------------
+
+
+********query that shows department name and total number of employees in each department with the format as DEPTPARTMENT NAME:NUMBER OF EMPLOYEE********************
+
+mysql> select Department.DeptName, count(Employee.EmpNo) as numb_of_emps from Department INNER JOIN Employee ON Department.DeptNumber=Employee.DeptNumber group by Department.DeptNumber;
+
++-----------+--------------+
+| DeptName  | numb_of_emps |
++-----------+--------------+
+| HR        |            3 |
+| Sales     |            3 |
+| Marketing |            3 |
+| Purchase  |            3 |
+| Account   |            5 |
++-----------+--------------+
+5 rows in set (0.37 sec)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
