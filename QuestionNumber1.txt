@@ -1,0 +1,4 @@
+creating table: User (For Registration Program)
+
+create table User(username VARCHAR(30) NOT NULL, password VARCHAR(20) NOT NULL, confirm_password VARCHAR(20) NOT NULL, fname VARCHAR(30) NOT NULL, lname VARCHAR(30) NOT NULL, email VARCHAR(30) NOT NULL, phno BIGINT PRIMARY KEY, location VARCHAR(30) NOT NULL);
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
